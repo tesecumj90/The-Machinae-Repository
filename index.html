@@ -12,7 +12,7 @@
             <img src="Machinae Repository.png" alt="Logo" class="logo">
             <h1>Inventory Form</h1>
         </header>
-        <form id="inventory-form" style="display: none;"> <!-- Initially hide the form -->
+        <form id="inventory-form" action="https://script.google.com/macros/s/AKfycbzpWFpnL8_sKBS6SFQAhqDGQ_EHO5zec9cYpZE7qk39fQBaG3NUutr6x9g7UHrbs4VA/exec" method="POST">
             <label for="partDescription">Part Description:</label>
             <input type="text" id="partDescription" name="partDescription" required><br><br>
             
@@ -56,41 +56,32 @@
     </div>
 
     <script>
+        // JavaScript code for handling form submission and sending data to Google Sheets
         document.addEventListener('DOMContentLoaded', function() {
-            const loginForm = document.getElementById('login-form');
-            const inventoryForm = document.getElementById('inventory-form');
-            const loginOverlay = document.querySelector('.login-overlay');
+            const form = document.getElementById('inventory-form');
 
-            loginForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-
-                if (username === 'keywarden' && password === 'passphrase') {
-                    loginOverlay.style.display = 'none'; // Hide the login overlay
-                    inventoryForm.style.display = 'block'; // Show the inventory form
-                } else {
-                    alert('Invalid username or password');
-                }
-            });
-
-            const inventoryForm = document.getElementById('inventory-form');
-
-            inventoryForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-
-                const formData = new FormData(inventoryForm);
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission behavior
+                
+                const formData = new FormData(form);
                 const data = {};
-
                 formData.forEach((value, key) => {
                     data[key] = value;
                 });
 
+                // Send data to Google Spreadsheet using Google Apps Script
                 google.script.run.withSuccessHandler(function(response) {
                     alert('The Repository has been Updated');
-                    inventoryForm.reset();
-                }).appendDataToSheet(data, '1GpQAmUhhRT-5_iA_PeoPaSJqLqNXpa5uPDeDh14U8i4');
+                    form.reset(); // Clear the form after successful submission
+                }).appendDataToSheet(data, '1GpQAmUhhRT-5_iA_PeoPaSJqLqNXpa5uPDeDh14U8i4'); // Replace '1GpQAmUhhRT-5_iA_PeoPaSJqLqNXpa5uPDeDh14U8i4' with your actual spreadsheet ID
+            });
+
+            const loginForm = document.getElementById('login-form');
+
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+                
+                // Implement login functionality here
             });
         });
     </script>
