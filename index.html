@@ -47,10 +47,28 @@
       var information = document.getElementById("information").value;
       var comments = document.getElementById("comments").value;
       
-      google.script.run.addToInventory(description, quantity, location, condition, serialNumber, compatibility, information, comments);
+      var url = 'https://script.google.com/macros/s/AKfycbyEys5FWPUrQlp3wyMGoiMTudIr3TWc8gvzogtbj0bFnRkksScVNEyb0Tfl26cmRxAq/exec';
+      url += '?description=' + encodeURIComponent(description);
+      url += '&quantity=' + encodeURIComponent(quantity);
+      url += '&location=' + encodeURIComponent(location);
+      url += '&condition=' + encodeURIComponent(condition);
+      url += '&serialNumber=' + encodeURIComponent(serialNumber);
+      url += '&compatibility=' + encodeURIComponent(compatibility);
+      url += '&information=' + encodeURIComponent(information);
+      url += '&comments=' + encodeURIComponent(comments);
       
-      // Optional: Clear form fields after submission
-      document.getElementById("inventoryForm").reset();
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          // Optional: Handle successful response
+          console.log('Item added to inventory successfully.');
+          
+          // Optional: Clear form fields after submission
+          document.getElementById("inventoryForm").reset();
+        }
+      };
+      xhr.open('GET', url);
+      xhr.send();
     }
   </script>
 </body>
