@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Lab Inventory</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Computer Lab Inventory</h1>
+        <form id="inventory-form">
+            <label for="part-description">Part Description:</label>
+            <input type="text" id="part-description" name="part-description" required>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" required>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location">
+
+            <label for="condition">Condition:</label>
+            <input type="text" id="condition" name="condition">
+
+            <label for="serial-number">Serial Numbers:</label>
+            <input type="text" id="serial-number" name="serial-number">
+
+            <label for="compatibility-info">Compatibility Information:</label>
+            <input type="text" id="compatibility-info" name="compatibility-info">
+
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="comments"></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
