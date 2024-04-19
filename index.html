@@ -3,38 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Computer Lab Inventory</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Inventory Form</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Computer Lab Inventory</h1>
-        <form id="inventory-form">
-            <label for="part-description">Part Description:</label>
-            <input type="text" id="part-description" name="part-description" required>
-
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" required>
-
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location">
-
-            <label for="condition">Condition:</label>
-            <input type="text" id="condition" name="condition">
-
-            <label for="serial-number">Serial Numbers:</label>
-            <input type="text" id="serial-number" name="serial-number">
-
-            <label for="compatibility-info">Compatibility Information:</label>
-            <input type="text" id="compatibility-info" name="compatibility-info">
-
-            <label for="comments">Comments:</label>
-            <textarea id="comments" name="comments"></textarea>
-
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-
-    <script src="script.js"></script>
+    <h1>Inventory Form</h1>
+    <form id="inventory-form" action="https://script.google.com/macros/s/AKfycbzpWFpnL8_sKBS6SFQAhqDGQ_EHO5zec9cYpZE7qk39fQBaG3NUutr6x9g7UHrbs4VA/exec" method="POST">
+        <label for="partDescription">Part Description:</label>
+        <input type="text" id="partDescription" name="partDescription" required><br><br>
+        
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required><br><br>
+        
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required><br><br>
+        
+        <label for="condition">Condition:</label>
+        <input type="text" id="condition" name="condition" required><br><br>
+        
+        <label for="serialNumber">Serial Number:</label>
+        <input type="text" id="serialNumber" name="serialNumber"><br><br>
+        
+        <label for="compatibilityInfo">Compatibility Information:</label>
+        <input type="text" id="compatibilityInfo" name="compatibilityInfo"><br><br>
+        
+        <label for="comments">Comments:</label>
+        <textarea id="comments" name="comments"></textarea><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>
