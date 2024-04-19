@@ -1,54 +1,37 @@
+/* Apply styles to the body */
 body {
-    background-color: black;
-    background-image: url('black-eye-cyber-circuit-future-technology-concept-background-vector.jpg');
-    background-size: cover;
-    background-position: center;
-    color: white;
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
 }
 
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.login-form {
-    background-color: rgba(0, 0, 0, 0.7);
+/* Apply styles to the form container */
+.container {
+    max-width: 400px;
+    margin: 50px auto;
     padding: 20px;
+    background-color: #fff;
     border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    text-align: center;
-    color: white;
-}
-
-label {
-    color: white;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="submit"] {
+/* Apply styles to the form inputs */
+input[type="text"], input[type="password"], input[type="submit"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
+/* Apply styles to the submit button */
 input[type="submit"] {
     background-color: #007bff;
-    color: white;
+    color: #fff;
     cursor: pointer;
 }
 
-input[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
+/* Apply styles to the logo */
 .logo {
     max-width: 200px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
