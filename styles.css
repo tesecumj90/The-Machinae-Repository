@@ -1,58 +1,54 @@
-/* Styles for the body */
 body {
+    background-image: url('background-image.jpg'); /* Replace 'background-image.jpg' with your background image file */
+    background-size: cover;
+    color: white;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
 }
 
-/* Styles for the form container */
-.container {
-    max-width: 600px;
+#logo {
+    display: block;
+    margin: 0 auto;
+    width: 200px; /* Adjust the width as needed */
+    height: auto;
+    margin-bottom: 20px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+form {
+    max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
 }
 
-/* Styles for the form title */
-h1 {
-    text-align: center;
-    color: #333;
-}
-
-/* Styles for form labels */
 label {
     display: block;
     margin-bottom: 5px;
-    font-weight: bold;
 }
 
-/* Styles for form inputs */
 input[type="text"],
-input[type="number"],
-textarea {
+input[type="number"] {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: none;
     border-radius: 5px;
-    box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
 
-/* Styles for the submit button */
-input[type="submit"] {
+button {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #4CAF50;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-/* Styles for the submit button on hover */
-input[type="submit"]:hover {
-    background-color: #0056b3;
+button:hover {
+    background-color: #45a049;
 }
