@@ -10,7 +10,7 @@
     <img src="Machinae Repository.png" alt="Logo" id="logo">
     <h1>The-Machinae-Repository</h1>
     <h2>Add Item to Inventory</h2>
-    <form id="inventoryForm">
+    <form id="inventoryForm" action="https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec" method="GET">
         <label for="description">Description:</label>
         <input type="text" id="description" name="description"><br><br>
 
@@ -37,5 +37,38 @@
 
         <button type="button" onclick="addItem()">Add to Inventory</button>
     </form>
+
+    <script>
+        function addItem() {
+            var description = document.getElementById("description").value;
+            var quantity = document.getElementById("quantity").value;
+            var location = document.getElementById("location").value;
+            var condition = document.getElementById("condition").value;
+            var serialNumber = document.getElementById("serialNumber").value;
+            var compatibility = document.getElementById("compatibility").value;
+            var information = document.getElementById("information").value;
+            var comments = document.getElementById("comments").value;
+
+            var url = "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec";
+            url += "?description=" + encodeURIComponent(description);
+            url += "&quantity=" + encodeURIComponent(quantity);
+            url += "&location=" + encodeURIComponent(location);
+            url += "&condition=" + encodeURIComponent(condition);
+            url += "&serialNumber=" + encodeURIComponent(serialNumber);
+            url += "&compatibility=" + encodeURIComponent(compatibility);
+            url += "&information=" + encodeURIComponent(information);
+            url += "&comments=" + encodeURIComponent(comments);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    alert("Item added to inventory successfully.");
+                    document.getElementById("inventoryForm").reset();
+                }
+            };
+            xhr.send();
+        }
+    </script>
 </body>
 </html>
