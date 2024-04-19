@@ -3,43 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Main Page</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-form">
-            <h1>Login</h1>
-            <form id="login-form">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required><br><br>
-                
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required><br><br>
-                
-                <input type="submit" value="Login">
-            </form>
-        </div>
+    <div class="container">
+        <header>
+            <img src="Machinae Repository jpg.jpg" alt="Logo" class="logo">
+            <h1>Inventory Form</h1>
+        </header>
+        <form id="inventory-form" action="https://script.google.com/macros/s/AKfycbzpWFpnL8_sKBS6SFQAhqDGQ_EHO5zec9cYpZE7qk39fQBaG3NUutr6x9g7UHrbs4VA/exec" method="POST">
+            <label for="partDescription">Part Description:</label>
+            <input type="text" id="partDescription" name="partDescription" required><br><br>
+            
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" required><br><br>
+            
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required><br><br>
+            
+            <label for="condition">Condition:</label>
+            <input type="text" id="condition" name="condition" required><br><br>
+            
+            <label for="serialNumber">Serial Number:</label>
+            <input type="text" id="serialNumber" name="serialNumber"><br><br>
+            
+            <label for="compatibilityInfo">Compatibility Information:</label>
+            <input type="text" id="compatibilityInfo" name="compatibilityInfo"><br><br>
+            
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="comments"></textarea><br><br>
+            
+            <input type="submit" value="Submit">
+        </form>
     </div>
 
     <script>
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
-
-            // Call Google Apps Script function to handle login
-            google.script.run.withSuccessHandler(function(authenticated) {
-                if (authenticated) {
-                    // Redirect to the main page or perform other actions
-                    window.location.href = 'main.html';
-                } else {
-                    // Display an error message
-                    alert('The words of entry were misspoken.');
-                }
-            }).login(username, password);
-        });
+        // JavaScript code for handling form submission and sending data to Google Sheets
     </script>
 </body>
 </html>
