@@ -1,45 +1,47 @@
 body {
-    font-family: Arial, sans-serif;
-    background-image: url('black-eye-cyber-circuit-future-technology-concept-background-vector.jpg');
+    background-color: black;
+    background-image: url('black-eye-cyber-circuit-future-technology-concept-background-vector.jpg'); /* Replace 'background.jpg' with the path to your background image */
     background-size: cover;
     background-position: center;
     color: white;
+    font-family: Arial, sans-serif;
 }
 
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.login-form {
-    background-color: rgba(0, 0, 0, 0.7);
+.container {
+    max-width: 800px;
+    margin: 50px auto;
     padding: 20px;
+    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    text-align: center;
-}
-
-label {
-    color: white;
+.logo {
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
 }
 
 input[type="text"],
+input[type="number"],
 input[type="password"],
-input[type="submit"] {
+textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
 input[type="submit"] {
+    width: 100%;
     background-color: #007bff;
     color: white;
+    border: none;
+    padding: 15px 0;
+    border-radius: 5px;
     cursor: pointer;
 }
 
