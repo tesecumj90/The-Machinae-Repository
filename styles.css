@@ -1,54 +1,65 @@
-body {
-    background-image: url('black-eye-cyber-circuit-future-technology-concept-background-vector.jpg'); /* Replace 'background-image.jpg' with your background image file */
-    background-size: cover;
-    color: white;
-    font-family: Arial, sans-serif;
-}
+<form id="inventoryForm">
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description"><br><br>
 
-#logo {
-    display: block;
-    margin: 0 auto;
-    width: 200px; /* Adjust the width as needed */
-    height: auto;
-    margin-bottom: 20px;
-}
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity"><br><br>
 
-h1, h2 {
-    text-align: center;
-}
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location"><br><br>
 
-form {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-}
+    <label for="condition">Condition:</label>
+    <input type="text" id="condition" name="condition"><br><br>
 
-label {
-    display: block;
-    margin-bottom: 5px;
-}
+    <label for="serialNumber">Serial Number:</label>
+    <input type="text" id="serialNumber" name="serialNumber"><br><br>
 
-input[type="text"],
-input[type="number"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: none;
-    border-radius: 5px;
-}
+    <label for="compatibility">Compatibility:</label>
+    <input type="text" id="compatibility" name="compatibility"><br><br>
 
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    <label for="information">Information:</label>
+    <input type="text" id="information" name="information"><br><br>
 
-button:hover {
-    background-color: #45a049;
-}
+    <label for="comments">Comments:</label>
+    <input type="text" id="comments" name="comments"><br><br>
+
+    <button type="button" onclick="addItem()">Add to Inventory</button>
+</form>
+
+<script>
+    function addItem() {
+        var description = document.getElementById("description").value;
+        var quantity = document.getElementById("quantity").value;
+        var location = document.getElementById("location").value;
+        var condition = document.getElementById("condition").value;
+        var serialNumber = document.getElementById("serialNumber").value;
+        var compatibility = document.getElementById("compatibility").value;
+        var information = document.getElementById("information").value;
+        var comments = document.getElementById("comments").value;
+
+        var url = "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec";
+        url += "?description=" + encodeURIComponent(description);
+        url += "&quantity=" + encodeURIComponent(quantity);
+        url += "&location=" + encodeURIComponent(location);
+        url += "&condition=" + encodeURIComponent(condition);
+        url += "&serialNumber=" + encodeURIComponent(serialNumber);
+        url += "&compatibility=" + encodeURIComponent(compatibility);
+        url += "&information=" + encodeURIComponent(information);
+        url += "&comments=" + encodeURIComponent(comments);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                alert("Item added to inventory successfully.");
+                document.getElementById("inventoryForm").reset();
+            }
+        };
+        xhr.send();
+    }
+</script>
+
+
+
+
+
