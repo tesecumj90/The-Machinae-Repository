@@ -6,7 +6,7 @@ body {
 
 /* Apply styles to the form container */
 .container {
-    max-width: 400px;
+    max-width: 100px;
     margin: 50px auto;
     padding: 20px;
     background-color: #fff;
@@ -16,7 +16,7 @@ body {
 
 /* Apply styles to the form inputs */
 input[type="text"], input[type="password"], input[type="submit"] {
-    width: 100%;
+    width: 25%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
