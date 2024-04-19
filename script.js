@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function sendDataToGoogleSpreadsheet(data) {
         const spreadsheetId = '1GpQAmUhhRT-5_iA_PeoPaSJqLqNXpa5uPDeDh14U8i4';
         const apiKey = 'AIzaSyAEeFwpce1U2dmlvYTwV4-w7kIB2NdtgKs';
-        const jsonPath = 'https://raw.githubusercontent.com/tesecumj90/The-Machinae-Repository/main/client_secret_634651840650-lcu45i4kpbktpfbt78ivejmomf4lmapc.apps.googleusercontent.com.json';
+        const jsonPath = 'https://raw.githubusercontent.com/tesecumj90/The-Machinae-Repository/main/client_secret_634651840650-gafde1t1glnrhqtg0ae8kk035rqpu6mh.apps.googleusercontent.com%20(1).json';
         const range = 'Sheet1!A:G'; // Specify the range to include all columns where you want to append data
 
         fetch(jsonPath)
