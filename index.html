@@ -1,61 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Input Data Form</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Management</title>
 </head>
 <body>
-  <h2>Input Data Form</h2>
-  <form id="dataForm">
-    <label for="partDescription">Part Description:</label><br>
-    <input type="text" id="partDescription" name="partDescription"><br>
-
-    <label for="quantity">Quantity:</label><br>
-    <input type="text" id="quantity" name="quantity"><br>
-
-    <label for="location">Location:</label><br>
-    <input type="text" id="location" name="location"><br>
-
-    <label for="condition">Condition:</label><br>
-    <input type="text" id="condition" name="condition"><br>
-
-    <label for="serialNumber">Serial Number:</label><br>
-    <input type="text" id="serialNumber" name="serialNumber"><br>
-
-    <label for="compatibility">Compatibility:</label><br>
-    <input type="text" id="compatibility" name="compatibility"><br>
-
-    <label for="information">Information:</label><br>
-    <input type="text" id="information" name="information"><br>
-
-    <label for="comments">Comments:</label><br>
+  <h1>Inventory Management</h1>
+  
+  <form id="inventoryForm">
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" required><br><br>
+    
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" required><br><br>
+    
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location" required><br><br>
+    
+    <label for="condition">Condition:</label>
+    <input type="text" id="condition" name="condition" required><br><br>
+    
+    <label for="serialNumber">Serial Number:</label>
+    <input type="text" id="serialNumber" name="serialNumber" required><br><br>
+    
+    <label for="compatibility">Compatibility:</label>
+    <input type="text" id="compatibility" name="compatibility" required><br><br>
+    
+    <label for="information">Information:</label>
+    <input type="text" id="information" name="information" required><br><br>
+    
+    <label for="comments">Comments:</label>
     <input type="text" id="comments" name="comments"><br><br>
-
-    <input type="button" value="Submit" onclick="submitData()">
+    
+    <button type="button" onclick="addToInventory()">Add to Inventory</button>
   </form>
-
+  
   <script>
-    function submitData() {
-      var formData = {
-        partDescription: document.getElementById("partDescription").value,
-        quantity: document.getElementById("quantity").value,
-        location: document.getElementById("location").value,
-        condition: document.getElementById("condition").value,
-        serialNumber: document.getElementById("serialNumber").value,
-        compatibility: document.getElementById("compatibility").value,
-        information: document.getElementById("information").value,
-        comments: document.getElementById("comments").value
-      };
-
-      fetch('https://script.google.com/macros/s/AKfycbxVaXlJ3h-e5HJ5eJ8oyR2QbevNdyr8gX0g/exec', { // Replace with your actual web app URL
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-      .then(response => response.text())
-      .then(data => console.log(data))
-      .catch(error => console.error('Error:', error));
+    function addToInventory() {
+      var description = document.getElementById("description").value;
+      var quantity = document.getElementById("quantity").value;
+      var location = document.getElementById("location").value;
+      var condition = document.getElementById("condition").value;
+      var serialNumber = document.getElementById("serialNumber").value;
+      var compatibility = document.getElementById("compatibility").value;
+      var information = document.getElementById("information").value;
+      var comments = document.getElementById("comments").value;
+      
+      google.script.run.addToInventory(description, quantity, location, condition, serialNumber, compatibility, information, comments);
+      
+      // Optional: Clear form fields after submission
+      document.getElementById("inventoryForm").reset();
     }
   </script>
 </body>
