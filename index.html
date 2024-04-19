@@ -38,6 +38,23 @@
         </form>
     </div>
 
+    <div class="login-overlay">
+        <div class="login-container">
+            <div class="login-form">
+                <h1>Login</h1>
+                <form id="login-form">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required><br><br>
+                    
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required><br><br>
+                    
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
         // JavaScript code for handling form submission and sending data to Google Sheets
         document.addEventListener('DOMContentLoaded', function() {
@@ -57,6 +74,14 @@
                     alert('The Repository has been Updated');
                     form.reset(); // Clear the form after successful submission
                 }).appendDataToSheet(data, '1GpQAmUhhRT-5_iA_PeoPaSJqLqNXpa5uPDeDh14U8i4'); // Replace '1GpQAmUhhRT-5_iA_PeoPaSJqLqNXpa5uPDeDh14U8i4' with your actual spreadsheet ID
+            });
+
+            const loginForm = document.getElementById('login-form');
+
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+                
+                // Implement login functionality here
             });
         });
     </script>
