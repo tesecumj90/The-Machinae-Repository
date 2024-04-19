@@ -1,37 +1,14 @@
-/* Styles for the body */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-/* Styles for the form container */
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Styles for the form title */
-h1 {
-    text-align: center;
-    color: #333;
-}
-
-/* Styles for form labels */
+/* Styles for the form labels */
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-/* Styles for form inputs */
+/* Styles for the form inputs */
 input[type="text"],
 input[type="number"],
+input[type="password"],
 textarea {
     width: 100%;
     padding: 10px;
