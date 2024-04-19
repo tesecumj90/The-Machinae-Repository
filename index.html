@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Computer Lab Inventory</title>
-    <script src="https://apis.google.com/js/api.js"></script>
 </head>
 <body>
     <h1>Computer Lab Inventory Management</h1>
@@ -17,14 +16,30 @@
     <script>
         function submitForm() {
             const formData = new FormData(document.getElementById("inventoryForm"));
-            const values = [];
+            const values = {};
             formData.forEach((value, key) => {
-                values.push(value);
+                values[key] = value;
             });
 
-            google.script.run.addInventory(values);
-            document.getElementById("inventoryForm").reset();
-            alert('Inventory data submitted successfully!');
+            fetch('https://script.google.com/macros/s/your_script_id/exec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(values)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Inventory data submitted successfully!');
+                    document.getElementById("inventoryForm").reset();
+                } else {
+                    alert('Failed to submit inventory data. Please try again later.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to submit inventory data. Please try again later.');
+            });
         }
     </script>
 </body>
