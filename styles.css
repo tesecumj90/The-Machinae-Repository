@@ -1,11 +1,11 @@
-/* Apply styles to the body */
 body {
     font-family: Arial, sans-serif;
-    background-color: black; /* Set the background color to black */
+    background-image: url('path/to/your/background/photo.jpg');
+    background-size: cover;
+    background-position: center;
     color: white;
 }
 
-/* Apply styles to the login container */
 .login-container {
     display: flex;
     justify-content: center;
@@ -13,16 +13,14 @@ body {
     height: 100vh;
 }
 
-/* Apply styles to the login form */
 .login-form {
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 20px;
     border-radius: 5px;
 }
 
 h1 {
     text-align: center;
-    color: white;
 }
 
 label {
