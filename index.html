@@ -3,41 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Computer Lab Inventory</title>
+    <script src="https://apis.google.com/js/api.js"></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <img src="Machinae_Repository.png" alt="Logo" class="logo">
-            <h1>Inventory Form</h1>
-        </header>
-        <form id="inventory-form">
-            <label for="partDescription">Part Description:</label>
-            <input type="text" id="partDescription" name="partDescription" required><br><br>
-            
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" required><br><br>
-            
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location" required><br><br>
-            
-            <label for="condition">Condition:</label>
-            <input type="text" id="condition" name="condition" required><br><br>
-            
-            <label for="serialNumber">Serial Number:</label>
-            <input type="text" id="serialNumber" name="serialNumber"><br><br>
-            
-            <label for="compatibilityInfo">Compatibility Information:</label>
-            <input type="text" id="compatibilityInfo" name="compatibilityInfo"><br><br>
-            
-            <label for="comments">Comments:</label>
-            <textarea id="comments" name="comments"></textarea><br><br>
-            
-            <input type="submit" value="Submit">
-        </form>
-    </div>
+    <h1>Computer Lab Inventory Management</h1>
+    <form id="inventoryForm">
+        <label for="partDescription">Part Description:</label><br>
+        <input type="text" id="partDescription" name="partDescription"><br>
+        
+        <label for="quantity">Quantity:</label><br>
+        <input type="number" id="quantity" name="quantity"><br>
+        
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location"><br>
+        
+        <label for="condition">Condition:</label><br>
+        <select id="condition" name="condition">
+            <option value="working">Working</option>
+            <option value="needsRepair">Needs Repair</option>
+            <option value="obsolete">Obsolete</option>
+        </select><br>
+        
+        <label for="serialNumber">Serial Numbers:</label><br>
+        <input type="text" id="serialNumber" name="serialNumber"><br>
+        
+        <label for="compatibility">Compatibility Information:</label><br>
+        <input type="text" id="compatibility" name="compatibility"><br>
+        
+        <label for="comments">Comments:</label><br>
+        <textarea id="comments" name="comments"></textarea><br>
+        
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
 
-    <script src="script.js"></script>
+    <script>
+        function submitForm() {
+            const formData = new FormData(document.getElementById("inventoryForm"));
+            const values = [];
+            formData.forEach((value, key) => {
+                values.push(value);
+            });
+
+            google.script.run.addInventory(values);
+            document.getElementById("inventoryForm").reset();
+            alert('Inventory data submitted successfully!');
+        }
+    </script>
 </body>
 </html>
