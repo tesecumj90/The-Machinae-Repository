@@ -1,35 +1,40 @@
-/* Styles for the form labels */
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+/* Apply styles to the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
 }
 
-/* Styles for the form inputs */
-input[type="text"],
-input[type="number"],
-input[type="password"],
-textarea {
+/* Apply styles to the form container */
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Apply styles to the form inputs */
+input[type="text"], input[type="password"], input[type="submit"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    box-sizing: border-box;
 }
 
-/* Styles for the submit button */
+/* Apply styles to the submit button */
 input[type="submit"] {
-    width: 100%;
-    padding: 10px;
     background-color: #007bff;
     color: #fff;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
 }
 
-/* Styles for the submit button on hover */
-input[type="submit"]:hover {
-    background-color: #0056b3;
+/* Apply styles to the logo */
+.logo {
+    max-width: 200px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure the logo is displayed as a block element */
+    margin: 0 auto 20px; /* Center the logo horizontally and add some space below */
 }
