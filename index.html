@@ -3,33 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The-Machinae-Repository</title>
+    <title>Main Page</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>The-Machinae-Repository</h1>
-    <form id="inventory-form" action="https://script.google.com/macros/s/AKfycbzpWFpnL8_sKBS6SFQAhqDGQ_EHO5zec9cYpZE7qk39fQBaG3NUutr6x9g7UHrbs4VA/exec" method="POST">
-        <label for="partDescription">Part Description:</label>
-        <input type="text" id="partDescription" name="partDescription" required><br><br>
-        
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" name="quantity" required><br><br>
-        
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location" required><br><br>
-        
-        <label for="condition">Condition:</label>
-        <input type="text" id="condition" name="condition" required><br><br>
-        
-        <label for="serialNumber">Serial Number:</label>
-        <input type="text" id="serialNumber" name="serialNumber"><br><br>
-        
-        <label for="compatibilityInfo">Compatibility Information:</label>
-        <input type="text" id="compatibilityInfo" name="compatibilityInfo"><br><br>
-        
-        <label for="comments">Comments:</label>
-        <textarea id="comments" name="comments"></textarea><br><br>
-        
-        <input type="submit" value="Submit">
-    </form>
+    <div class="container">
+        <header>
+            <img src="Machinae Repository.png" alt="Logo" class="logo">
+            <h1>Inventory Form</h1>
+        </header>
+        <form id="inventory-form" action="https://script.google.com/macros/s/AKfycbzpWFpnL8_sKBS6SFQAhqDGQ_EHO5zec9cYpZE7qk39fQBaG3NUutr6x9g7UHrbs4VA/exec" method="POST">
+            <label for="partDescription">Part Description:</label>
+            <input type="text" id="partDescription" name="partDescription" required><br><br>
+            
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" required><br><br>
+            
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required><br><br>
+            
+            <label for="condition">Condition:</label>
+            <input type="text" id="condition" name="condition" required><br><br>
+            
+            <label for="serialNumber">Serial Number:</label>
+            <input type="text" id="serialNumber" name="serialNumber"><br><br>
+            
+            <label for="compatibilityInfo">Compatibility Information:</label>
+            <input type="text" id="compatibilityInfo" name="compatibilityInfo"><br><br>
+            
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="comments"></textarea><br><br>
+            
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <!-- <div class="login-overlay">
+        <div class="login-container">
+            <div class="login-form">
+                <h1>Login</h1>
+                <form id="login-form">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required><br><br>
+                    
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required><br><br>
+                    
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+        </div>
+    </div> -->
+
+    <script>
+        // JavaScript code for handling form submission and sending data to Google Sheets
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('inventory-form');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission behavior
+                
+                const formData = new FormData(form);
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+
+                // Send data to Google Spreadsheet using Google Apps Script
+                google.script.run.withSuccessHandler(function(response) {
+                    alert('The Repository has been Updated');
+                    form.reset(); // Clear the form after successful submission
+                }).appendDataToSheet(data, '1GpQAmUhhRT-5_iA_PeoPaSJqLqNXpa5uPDeDh14U8i4'); // Replace '1GpQAmUhhRT-5_iA_PeoPaSJqLqNXpa5uPDeDh14U8i4' with your actual spreadsheet ID
+            });
+
+            // const loginForm = document.getElementById('login-form');
+
+            // loginForm.addEventListener('submit', function(event) {
+            //     event.preventDefault(); // Prevent default form submission
+                
+            //     // Implement login functionality here
+            // });
+        });
+    </script>
 </body>
 </html>
