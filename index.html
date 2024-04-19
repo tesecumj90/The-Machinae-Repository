@@ -8,7 +8,30 @@
 <body>
     <h1>Computer Lab Inventory Management</h1>
     <form id="inventoryForm">
-        <!-- Form fields here -->
+        <label for="partDescription">Part Description:</label><br>
+        <input type="text" id="partDescription" name="partDescription"><br>
+        
+        <label for="quantity">Quantity:</label><br>
+        <input type="number" id="quantity" name="quantity"><br>
+        
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location"><br>
+        
+        <label for="condition">Condition:</label><br>
+        <select id="condition" name="condition">
+            <option value="working">Working</option>
+            <option value="needsRepair">Needs Repair</option>
+            <option value="obsolete">Obsolete</option>
+        </select><br>
+        
+        <label for="serialNumber">Serial Numbers:</label><br>
+        <input type="text" id="serialNumber" name="serialNumber"><br>
+        
+        <label for="compatibility">Compatibility Information:</label><br>
+        <input type="text" id="compatibility" name="compatibility"><br>
+        
+        <label for="comments">Comments:</label><br>
+        <textarea id="comments" name="comments"></textarea><br>
         
         <button type="button" onclick="submitForm()">Submit</button>
     </form>
