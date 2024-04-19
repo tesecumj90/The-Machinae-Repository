@@ -3,33 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Form</title>
+    <title>Computer Lab Inventory</title>
+    <script src="https://apis.google.com/js/api.js"></script>
 </head>
 <body>
-    <h1>Inventory Form</h1>
-    <form id="inventory-form" action="https://script.google.com/macros/s/AKfycbzpWFpnL8_sKBS6SFQAhqDGQ_EHO5zec9cYpZE7qk39fQBaG3NUutr6x9g7UHrbs4VA/exec" method="POST">
-        <label for="partDescription">Part Description:</label>
-        <input type="text" id="partDescription" name="partDescription" required><br><br>
+    <h1>Computer Lab Inventory Management</h1>
+    <form id="inventoryForm">
+        <!-- Form fields here -->
         
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" name="quantity" required><br><br>
-        
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location" required><br><br>
-        
-        <label for="condition">Condition:</label>
-        <input type="text" id="condition" name="condition" required><br><br>
-        
-        <label for="serialNumber">Serial Number:</label>
-        <input type="text" id="serialNumber" name="serialNumber"><br><br>
-        
-        <label for="compatibilityInfo">Compatibility Information:</label>
-        <input type="text" id="compatibilityInfo" name="compatibilityInfo"><br><br>
-        
-        <label for="comments">Comments:</label>
-        <textarea id="comments" name="comments"></textarea><br><br>
-        
-        <input type="submit" value="Submit">
+        <button type="button" onclick="submitForm()">Submit</button>
     </form>
+
+    <script>
+        function submitForm() {
+            const formData = new FormData(document.getElementById("inventoryForm"));
+            const values = [];
+            formData.forEach((value, key) => {
+                values.push(value);
+            });
+
+            google.script.run.addInventory(values);
+            document.getElementById("inventoryForm").reset();
+            alert('Inventory data submitted successfully!');
+        }
+    </script>
 </body>
 </html>
