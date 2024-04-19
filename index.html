@@ -40,6 +40,25 @@
 
     <script>
         // JavaScript code for handling form submission and sending data to Google Sheets
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('inventory-form');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission behavior
+                
+                const formData = new FormData(form);
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+
+                // Send data to Google Spreadsheet using Google Apps Script
+                google.script.run.withSuccessHandler(function(response) {
+                    alert('The Repository has been Updated');
+                    form.reset(); // Clear the form after successful submission
+                }).appendDataToSheet(data, '1GpQAmUhhRT-5_iA_PeoPaSJqLqNXpa5uPDeDh14U8i4'); // Replace '1GpQAmUhhRT-5_iA_PeoPaSJqLqNXpa5uPDeDh14U8i4' with your actual spreadsheet ID
+            });
+        });
     </script>
 </body>
 </html>
