@@ -19,6 +19,18 @@
         <div id="inventoryData"></div> <!-- Container to display inventory data -->
     </div>
 
+    <!-- Modal for editing inventory items -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Edit Item</h2>
+            <form id="editForm">
+                <!-- Form fields for editing items -->
+            </form>
+            <button onclick="saveChanges()">Save Changes</button>
+        </div>
+    </div>
+
     <script>
         // Function to display inventory data
         function displayInventory() {
@@ -44,7 +56,7 @@
                         html += "<td>" + item.information + "</td>";
                         html += "<td>" + item.comments + "</td>";
                         html += "<td>" + item.dateTime + "</td>";
-                        html += "<td><button class=\"editButton\" onclick=\"editItem('" + item.rowId + "')\">Edit</button></td>";
+                        html += "<td><button class=\"editButton\" onclick=\"openEditModal('" + item.rowId + "','" + item.description + "','" + item.quantity + "','" + item.location + "','" + item.condition + "','" + item.serialNumber + "','" + item.compatibility + "','" + item.information + "','" + item.comments + "')\">Edit</button></td>";
                         html += "</tr>";
                     });
                     html += "</table>";
@@ -54,11 +66,73 @@
             xhr.send();
         }
 
-        // Function to edit inventory item
-        function editItem(rowId) {
-            // Here you can implement your edit functionality, like showing a modal with form fields populated with data of the selected item
-            // For simplicity, let's just log the rowId for now
-            console.log("Editing item with Row ID: " + rowId);
+        // Function to open the edit modal and populate it with data
+        function openEditModal(rowId, description, quantity, location, condition, serialNumber, compatibility, information, comments) {
+            var modal = document.getElementById("editModal");
+            modal.style.display = "block";
+
+            // Populate form fields with data of the selected item
+            document.getElementById("editForm").innerHTML = `
+                <input type="hidden" id="editRowId" value="${rowId}">
+                <label for="editDescription">Description:</label>
+                <input type="text" id="editDescription" value="${description}"><br><br>
+                <label for="editQuantity">Quantity:</label>
+                <input type="number" id="editQuantity" value="${quantity}"><br><br>
+                <label for="editLocation">Location:</label>
+                <input type="text" id="editLocation" value="${location}"><br><br>
+                <label for="editCondition">Condition:</label>
+                <input type="text" id="editCondition" value="${condition}"><br><br>
+                <label for="editSerialNumber">Serial Number:</label>
+                <input type="text" id="editSerialNumber" value="${serialNumber}"><br><br>
+                <label for="editCompatibility">Compatibility:</label>
+                <input type="text" id="editCompatibility" value="${compatibility}"><br><br>
+                <label for="editInformation">Information:</label>
+                <input type="text" id="editInformation" value="${information}"><br><br>
+                <label for="editComments">Comments:</label>
+                <input type="text" id="editComments" value="${comments}"><br><br>
+            `;
+        }
+
+        // Function to close the edit modal
+        function closeModal() {
+            var modal = document.getElementById("editModal");
+            modal.style.display = "none";
+        }
+
+        // Function to save changes made in the edit modal
+        function saveChanges() {
+            var rowId = document.getElementById("editRowId").value;
+            var description = document.getElementById("editDescription").value;
+            var quantity = document.getElementById("editQuantity").value;
+            var location = document.getElementById("editLocation").value;
+            var condition = document.getElementById("editCondition").value;
+            var serialNumber = document.getElementById("editSerialNumber").value;
+            var compatibility = document.getElementById("editCompatibility").value;
+            var information = document.getElementById("editInformation").value;
+            var comments = document.getElementById("editComments").value;
+
+            // Make a POST request to update the item in Google Sheets web app
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    alert("Changes saved successfully!");
+                    closeModal();
+                    displayInventory(); // Refresh inventory data after saving changes
+                }
+            };
+            var params = "action=edit";
+            params += "&rowId=" + encodeURIComponent(rowId);
+            params += "&description=" + encodeURIComponent(description);
+            params += "&quantity=" + encodeURIComponent(quantity);
+            params += "&location=" + encodeURIComponent(location);
+            params += "&condition=" + encodeURIComponent(condition);
+            params += "&serialNumber=" + encodeURIComponent(serialNumber);
+            params += "&compatibility=" + encodeURIComponent(compatibility);
+            params += "&information=" + encodeURIComponent(information);
+            params += "&comments=" + encodeURIComponent(comments);
+            xhr.send(params);
         }
 
         // Call the function to display inventory initially
