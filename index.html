@@ -12,55 +12,83 @@
         <h1>The-Machinae-Repository</h1>
         <h2>Add Item to Inventory</h2>
         <form id="inventoryForm">
-            <!-- Form fields for adding items -->
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description"><br><br>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity"><br><br>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location"><br><br>
+
+            <label for="condition">Condition:</label>
+            <input type="text" id="condition" name="condition"><br><br>
+
+            <label for="serialNumber">Serial Number:</label>
+            <input type="text" id="serialNumber" name="serialNumber"><br><br>
+
+            <label for="compatibility">Compatibility:</label>
+            <input type="text" id="compatibility" name="compatibility"><br><br>
+
+            <label for="information">Information:</label>
+            <input type="text" id="information" name="information"><br><br>
+
+            <label for="comments">Comments:</label>
+            <input type="text" id="comments" name="comments"><br><br>
+
+            <button type="button" onclick="addItem()">Add to Inventory</button>
         </form>
 
-        <h2>Inventory Data</h2>
         <div id="inventoryData"></div> <!-- Container to display inventory data -->
     </div>
 
-    <!-- Modal for editing inventory items -->
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Edit Item</h2>
-            <form id="editForm">
-                <input type="hidden" id="editRowId">
-                <label for="editDescription">Description:</label>
-                <input type="text" id="editDescription"><br><br>
-                <label for="editQuantity">Quantity:</label>
-                <input type="number" id="editQuantity"><br><br>
-                <label for="editLocation">Location:</label>
-                <input type="text" id="editLocation"><br><br>
-                <label for="editCondition">Condition:</label>
-                <input type="text" id="editCondition"><br><br>
-                <label for="editSerialNumber">Serial Number:</label>
-                <input type="text" id="editSerialNumber"><br><br>
-                <label for="editCompatibility">Compatibility:</label>
-                <input type="text" id="editCompatibility"><br><br>
-                <label for="editInformation">Information:</label>
-                <input type="text" id="editInformation"><br><br>
-                <label for="editComments">Comments:</label>
-                <input type="text" id="editComments"><br><br>
-            </form>
-            <button onclick="saveChanges()">Save Changes</button>
-        </div>
-    </div>
-
     <script>
+        function addItem() {
+            var description = document.getElementById("description").value;
+            var quantity = document.getElementById("quantity").value;
+            var location = document.getElementById("location").value;
+            var condition = document.getElementById("condition").value;
+            var serialNumber = document.getElementById("serialNumber").value;
+            var compatibility = document.getElementById("compatibility").value;
+            var information = document.getElementById("information").value;
+            var comments = document.getElementById("comments").value;
+
+            var url = "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec";
+            url += "?action=add";
+            url += "&description=" + encodeURIComponent(description);
+            url += "&quantity=" + encodeURIComponent(quantity);
+            url += "&location=" + encodeURIComponent(location);
+            url += "&condition=" + encodeURIComponent(condition);
+            url += "&serialNumber=" + encodeURIComponent(serialNumber);
+            url += "&compatibility=" + encodeURIComponent(compatibility);
+            url += "&information=" + encodeURIComponent(information);
+            url += "&comments=" + encodeURIComponent(comments);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    alert(xhr.responseText);
+                    document.getElementById("inventoryForm").reset();
+                    displayInventory(); // Call function to display updated inventory data
+                }
+            };
+            xhr.send();
+        }
+
         // Function to display inventory data
         function displayInventory() {
             var inventoryContainer = document.getElementById("inventoryData");
 
-            // Make a GET request to retrieve inventory data from Google Sheets web app
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec?action=get", true);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var inventoryData = JSON.parse(xhr.responseText); // Parse JSON response
                     // Display inventory data in the container
-                    var html = "<table>";
-                    html += "<tr><th>Description</th><th>Quantity</th><th>Location</th><th>Condition</th><th>Serial Number</th><th>Compatibility</th><th>Information</th><th>Comments</th><th>Date/Time</th><th>Edit</th></tr>";
+                    var html = "<h2>Inventory Data</h2>";
+                    html += "<table>";
+                    html += "<tr><th>Description</th><th>Quantity</th><th>Location</th><th>Condition</th><th>Serial Number</th><th>Compatibility</th><th>Information</th><th>Comments</th><th>Date/Time</th></tr>";
                     inventoryData.forEach(function (item) {
                         html += "<tr>";
                         html += "<td>" + item.description + "</td>";
@@ -72,7 +100,6 @@
                         html += "<td>" + item.information + "</td>";
                         html += "<td>" + item.comments + "</td>";
                         html += "<td>" + item.dateTime + "</td>";
-                        html += "<td><button class=\"editButton\" onclick=\"openEditModal('" + item.rowId + "','" + item.description + "','" + item.quantity + "','" + item.location + "','" + item.condition + "','" + item.serialNumber + "','" + item.compatibility + "','" + item.information + "','" + item.comments + "')\">Edit</button></td>";
                         html += "</tr>";
                     });
                     html += "</table>";
@@ -82,66 +109,7 @@
             xhr.send();
         }
 
-        // Function to open the edit modal and populate it with data
-        function openEditModal(rowId, description, quantity, location, condition, serialNumber, compatibility, information, comments) {
-            var modal = document.getElementById("editModal");
-            modal.style.display = "block";
-
-            // Populate form fields with data of the selected item
-            document.getElementById("editRowId").value = rowId;
-            document.getElementById("editDescription").value = description;
-            document.getElementById("editQuantity").value = quantity;
-            document.getElementById("editLocation").value = location;
-            document.getElementById("editCondition").value = condition;
-            document.getElementById("editSerialNumber").value = serialNumber;
-            document.getElementById("editCompatibility").value = compatibility;
-            document.getElementById("editInformation").value = information;
-            document.getElementById("editComments").value = comments;
-        }
-
-        // Function to close the edit modal
-        function closeModal() {
-            var modal = document.getElementById("editModal");
-            modal.style.display = "none";
-        }
-
-        // Function to save changes made in the edit modal
-        function saveChanges() {
-            var rowId = document.getElementById("editRowId").value;
-            var description = document.getElementById("editDescription").value;
-            var quantity = document.getElementById("editQuantity").value;
-            var location = document.getElementById("editLocation").value;
-            var condition = document.getElementById("editCondition").value;
-            var serialNumber = document.getElementById("editSerialNumber").value;
-            var compatibility = document.getElementById("editCompatibility").value;
-            var information = document.getElementById("editInformation").value;
-            var comments = document.getElementById("editComments").value;
-
-            // Make a POST request to update the item in Google Sheets web app
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    alert("Changes saved successfully!");
-                    closeModal();
-                    displayInventory(); // Refresh inventory data after saving changes
-                }
-            };
-            var params = "action=edit";
-            params += "&rowId=" + encodeURIComponent(rowId);
-            params += "&description=" + encodeURIComponent(description);
-            params += "&quantity=" + encodeURIComponent(quantity);
-            params += "&location=" + encodeURIComponent(location);
-            params += "&condition=" + encodeURIComponent(condition);
-            params += "&serialNumber=" + encodeURIComponent(serialNumber);
-            params += "&compatibility=" + encodeURIComponent(compatibility);
-            params += "&information=" + encodeURIComponent(information);
-            params += "&comments=" + encodeURIComponent(comments);
-            xhr.send(params);
-        }
-
-        // Call the function to display inventory initially
+        // Initial display of inventory data
         displayInventory();
     </script>
 </body>
