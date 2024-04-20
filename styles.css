@@ -1,8 +1,19 @@
+/* styles.css */
+
 body {
     background-image: url('black-eye-cyber-circuit-future-technology-concept-background-vector.jpg'); /* Replace 'background-image.jpg' with your background image file */
     background-size: cover;
     color: white;
     font-family: Arial, sans-serif;
+    margin: 0; /* Reset default margin */
+    padding: 0; /* Reset default padding */
+}
+
+.container {
+    max-width: 800px; /* Adjust container width as needed */
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center; /* Center align content */
 }
 
 #logo {
