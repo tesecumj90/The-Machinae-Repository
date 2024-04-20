@@ -1,3 +1,5 @@
+/* styles.css */
+
 body {
     background-image: url('black-eye-cyber-circuit-future-technology-concept-background-vector.jpg');
     background-size: cover;
@@ -18,7 +20,7 @@ h1, h2 {
 }
 
 .container {
-    max-width: 400px;
+    max-width: 800px; /* Increased max-width for better layout */
     margin: 0 auto;
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.5);
@@ -51,4 +53,23 @@ button {
 
 button:hover {
     background-color: #45a049;
+}
+
+/* Add styles for the Edit button */
+button.editButton {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button.editButton:hover {
+    background-color: #005F6B;
 }
