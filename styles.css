@@ -29,7 +29,6 @@ h1, h2 {
 label {
     display: block;
     margin-bottom: 10px; /* Increased margin-bottom for better spacing */
-    color: white; /* Ensure label text is visible */
 }
 
 input[type="text"],
