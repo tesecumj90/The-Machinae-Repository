@@ -12,8 +12,30 @@
         <h1>The-Machinae-Repository</h1>
         <h2>Add Item to Inventory</h2>
         <form id="inventoryForm">
-            <!-- Input fields for adding new item -->
-            <!-- Omitted for brevity -->
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description"><br><br>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity"><br><br>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location"><br><br>
+
+            <label for="condition">Condition:</label>
+            <input type="text" id="condition" name="condition"><br><br>
+
+            <label for="serialNumber">Serial Number:</label>
+            <input type="text" id="serialNumber" name="serialNumber"><br><br>
+
+            <label for="compatibility">Compatibility:</label>
+            <input type="text" id="compatibility" name="compatibility"><br><br>
+
+            <label for="information">Information:</label>
+            <input type="text" id="information" name="information"><br><br>
+
+            <label for="comments">Comments:</label>
+            <input type="text" id="comments" name="comments"><br><br>
+
             <button type="button" onclick="addItem()">Add to Inventory</button>
         </form>
 
@@ -31,7 +53,6 @@
             // Same as before, omitted for brevity
         }
 
-        // Function to populate form fields with item details for editing
         function editItem(description, quantity, location, condition, serialNumber, compatibility, information, comments) {
             // Populate form fields with item details for editing
             document.getElementById("description").value = description;
@@ -49,13 +70,11 @@
             addButton.setAttribute("onclick", "updateItem('" + description + "')");
         }
 
-        // Function to update item in inventory
         function updateItem(description) {
             // Similar to addItem(), but with a different URL for updating the item
             // Omitted for brevity
         }
 
-        // Function to delete item from inventory
         function deleteItem(description) {
             // Define URL for deleting the item
             var deleteUrl = "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec?description=" + encodeURIComponent(description) + "&action=delete";
