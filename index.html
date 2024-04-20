@@ -100,6 +100,8 @@
                         html += "<td>" + item.information + "</td>";
                         html += "<td>" + item.comments + "</td>";
                         html += "<td>" + item.dateTime + "</td>";
+                        // Add edit button for each row
+                        html += "<td><button onclick='editItem(\"" + item.description + "\", \"" + item.quantity + "\", \"" + item.location + "\", \"" + item.condition + "\", \"" + item.serialNumber + "\", \"" + item.compatibility + "\", \"" + item.information + "\", \"" + item.comments + "\")'>Edit</button></td>";
                         html += "</tr>";
                     });
                     html += "</table>";
@@ -111,6 +113,19 @@
 
         // Call the function to display inventory data when the page loads
         displayInventory();
+
+        // Function to edit item
+        function editItem(description, quantity, location, condition, serialNumber, compatibility, information, comments) {
+            // Populate the form fields with the existing data
+            document.getElementById("description").value = description;
+            document.getElementById("quantity").value = quantity;
+            document.getElementById("location").value = location;
+            document.getElementById("condition").value = condition;
+            document.getElementById("serialNumber").value = serialNumber;
+            document.getElementById("compatibility").value = compatibility;
+            document.getElementById("information").value = information;
+            document.getElementById("comments").value = comments;
+        }
     </script>
 </body>
 </html>
