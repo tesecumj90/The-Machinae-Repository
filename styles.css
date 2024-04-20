@@ -1,5 +1,3 @@
-/* styles.css */
-
 body {
     background-image: url('black-eye-cyber-circuit-future-technology-concept-background-vector.jpg');
     background-size: cover;
@@ -21,24 +19,26 @@ h1, h2 {
 
 .container {
     max-width: 800px; /* Increased max-width for better layout */
-    margin: 0 auto;
+    margin: 50px auto; /* Center the container vertically and horizontally */
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8); /* Increased opacity for better readability */
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Added box shadow for depth */
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px; /* Increased margin-bottom for better spacing */
 }
 
 input[type="text"],
 input[type="number"] {
-    width: 100%;
+    width: calc(100% - 16px); /* Adjusted width to account for padding */
     padding: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     border: none;
     border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8); /* Added background color for better visibility */
 }
 
 button {
@@ -49,6 +49,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s; /* Added transition for smoother hover effect */
 }
 
 button:hover {
