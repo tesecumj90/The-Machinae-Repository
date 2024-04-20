@@ -36,7 +36,7 @@
             <label for="comments">Comments:</label>
             <input type="text" id="comments" name="comments"><br><br>
 
-            <button type="button" onclick="addItem()">Add to Inventory</button>
+            <button type="button" id="addItemButton" onclick="addItem()">Add to Inventory</button>
         </form>
 
         <div id="inventoryData"></div> <!-- Container to display and edit inventory data -->
@@ -49,7 +49,7 @@
             // This remains unchanged from the previous implementation
         }
 
-        // Function to display and edit inventory data
+        // Function to display inventory data
         function displayInventory() {
             var inventoryContainer = document.getElementById("inventoryData");
 
@@ -84,7 +84,7 @@
             xhr.send();
         }
 
-        // Call the function to display and edit inventory data when the page loads
+        // Call the function to display inventory data when the page loads
         displayInventory();
 
         // Function to edit an inventory item
