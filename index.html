@@ -25,7 +25,23 @@
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>Edit Item</h2>
             <form id="editForm">
-                <!-- Form fields for editing items -->
+                <input type="hidden" id="editRowId">
+                <label for="editDescription">Description:</label>
+                <input type="text" id="editDescription"><br><br>
+                <label for="editQuantity">Quantity:</label>
+                <input type="number" id="editQuantity"><br><br>
+                <label for="editLocation">Location:</label>
+                <input type="text" id="editLocation"><br><br>
+                <label for="editCondition">Condition:</label>
+                <input type="text" id="editCondition"><br><br>
+                <label for="editSerialNumber">Serial Number:</label>
+                <input type="text" id="editSerialNumber"><br><br>
+                <label for="editCompatibility">Compatibility:</label>
+                <input type="text" id="editCompatibility"><br><br>
+                <label for="editInformation">Information:</label>
+                <input type="text" id="editInformation"><br><br>
+                <label for="editComments">Comments:</label>
+                <input type="text" id="editComments"><br><br>
             </form>
             <button onclick="saveChanges()">Save Changes</button>
         </div>
@@ -72,25 +88,15 @@
             modal.style.display = "block";
 
             // Populate form fields with data of the selected item
-            document.getElementById("editForm").innerHTML = `
-                <input type="hidden" id="editRowId" value="${rowId}">
-                <label for="editDescription">Description:</label>
-                <input type="text" id="editDescription" value="${description}"><br><br>
-                <label for="editQuantity">Quantity:</label>
-                <input type="number" id="editQuantity" value="${quantity}"><br><br>
-                <label for="editLocation">Location:</label>
-                <input type="text" id="editLocation" value="${location}"><br><br>
-                <label for="editCondition">Condition:</label>
-                <input type="text" id="editCondition" value="${condition}"><br><br>
-                <label for="editSerialNumber">Serial Number:</label>
-                <input type="text" id="editSerialNumber" value="${serialNumber}"><br><br>
-                <label for="editCompatibility">Compatibility:</label>
-                <input type="text" id="editCompatibility" value="${compatibility}"><br><br>
-                <label for="editInformation">Information:</label>
-                <input type="text" id="editInformation" value="${information}"><br><br>
-                <label for="editComments">Comments:</label>
-                <input type="text" id="editComments" value="${comments}"><br><br>
-            `;
+            document.getElementById("editRowId").value = rowId;
+            document.getElementById("editDescription").value = description;
+            document.getElementById("editQuantity").value = quantity;
+            document.getElementById("editLocation").value = location;
+            document.getElementById("editCondition").value = condition;
+            document.getElementById("editSerialNumber").value = serialNumber;
+            document.getElementById("editCompatibility").value = compatibility;
+            document.getElementById("editInformation").value = information;
+            document.getElementById("editComments").value = comments;
         }
 
         // Function to close the edit modal
