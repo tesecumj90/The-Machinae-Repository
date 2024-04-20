@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The-Machinae-Repository - Inventory Management System</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Link your CSS file here -->
 </head>
 <body>
     <div class="container">
@@ -43,7 +43,9 @@
     </div>
 
     <script>
+        // Function to add item to inventory
         function addItem() {
+            // Get values from input fields
             var description = document.getElementById("description").value;
             var quantity = document.getElementById("quantity").value;
             var location = document.getElementById("location").value;
@@ -53,6 +55,8 @@
             var information = document.getElementById("information").value;
             var comments = document.getElementById("comments").value;
 
+            // Make AJAX request to add item
+            var xhr = new XMLHttpRequest();
             var url = "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec";
             url += "?action=add";
             url += "&description=" + encodeURIComponent(description);
@@ -63,14 +67,13 @@
             url += "&compatibility=" + encodeURIComponent(compatibility);
             url += "&information=" + encodeURIComponent(information);
             url += "&comments=" + encodeURIComponent(comments);
-
-            var xhr = new XMLHttpRequest();
             xhr.open("GET", url, true);
-            xhr.onreadystatechange = function () {
+            xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    alert(xhr.responseText);
+                    // Add item to inventory
+                    displayInventory();
+                    // Clear form fields
                     document.getElementById("inventoryForm").reset();
-                    displayInventory(); // Call function to display updated inventory data
                 }
             };
             xhr.send();
@@ -78,32 +81,15 @@
 
         // Function to display inventory data
         function displayInventory() {
-            var inventoryContainer = document.getElementById("inventoryData");
-
+            // Make AJAX request to get inventory data
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec?action=get", true);
-            xhr.onreadystatechange = function () {
+            var url = "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec";
+            url += "?action=get";
+            xhr.open("GET", url, true);
+            xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    var inventoryData = JSON.parse(xhr.responseText); // Parse JSON response
-                    // Display inventory data in the container
-                    var html = "<h2>Inventory Data</h2>";
-                    html += "<table>";
-                    html += "<tr><th>Description</th><th>Quantity</th><th>Location</th><th>Condition</th><th>Serial Number</th><th>Compatibility</th><th>Information</th><th>Comments</th><th>Date/Time</th></tr>";
-                    inventoryData.forEach(function (item) {
-                        html += "<tr>";
-                        html += "<td>" + item.description + "</td>";
-                        html += "<td>" + item.quantity + "</td>";
-                        html += "<td>" + item.location + "</td>";
-                        html += "<td>" + item.condition + "</td>";
-                        html += "<td>" + item.serialNumber + "</td>";
-                        html += "<td>" + item.compatibility + "</td>";
-                        html += "<td>" + item.information + "</td>";
-                        html += "<td>" + item.comments + "</td>";
-                        html += "<td>" + item.dateTime + "</td>";
-                        html += "</tr>";
-                    });
-                    html += "</table>";
-                    inventoryContainer.innerHTML = html; // Set the HTML content of the container
+                    // Display inventory data
+                    document.getElementById("inventoryData").innerHTML = xhr.responseText;
                 }
             };
             xhr.send();
