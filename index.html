@@ -39,13 +39,14 @@
             <button type="button" onclick="addItem()">Add to Inventory</button>
         </form>
 
-        <div id="inventoryData"></div> <!-- Container to display inventory data -->
+        <div id="inventoryData">
+            <!-- Inventory data will be displayed here -->
+        </div> <!-- Container to display inventory data -->
     </div>
 
     <script>
         // Function to add item to inventory
         function addItem() {
-            // Get values from input fields
             var description = document.getElementById("description").value;
             var quantity = document.getElementById("quantity").value;
             var location = document.getElementById("location").value;
@@ -55,8 +56,7 @@
             var information = document.getElementById("information").value;
             var comments = document.getElementById("comments").value;
 
-            // Make AJAX request to add item
-            var xhr = new XMLHttpRequest();
+            // Replace 'YOUR_WEB_APP_ID' with your actual Google Apps Script web app ID
             var url = "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec";
             url += "?action=add";
             url += "&description=" + encodeURIComponent(description);
@@ -67,13 +67,13 @@
             url += "&compatibility=" + encodeURIComponent(compatibility);
             url += "&information=" + encodeURIComponent(information);
             url += "&comments=" + encodeURIComponent(comments);
+
+            var xhr = new XMLHttpRequest();
             xhr.open("GET", url, true);
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    // Add item to inventory
+                    // Item added successfully
                     displayInventory();
-                    // Clear form fields
-                    document.getElementById("inventoryForm").reset();
                 }
             };
             xhr.send();
@@ -81,22 +81,39 @@
 
         // Function to display inventory data
         function displayInventory() {
-            // Make AJAX request to get inventory data
+            var inventoryContainer = document.getElementById("inventoryData");
+
             var xhr = new XMLHttpRequest();
             var url = "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec";
             url += "?action=get";
             xhr.open("GET", url, true);
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    // Display inventory data
-                    document.getElementById("inventoryData").innerHTML = xhr.responseText;
+                    var inventoryData = JSON.parse(xhr.responseText);
+
+                    var html = "<h2>Inventory Data</h2>";
+                    html += "<table>";
+                    html += "<tr><th>Description</th><th>Quantity</th><th>Location</th><th>Condition</th><th>Serial Number</th><th>Compatibility</th><th>Information</th><th>Comments</th><th>Date/Time</th><th>Edit</th></tr>";
+                    inventoryData.forEach(function (item) {
+                        html += "<tr>";
+                        html += "<td>" + item.description + "</td>";
+                        html += "<td>" + item.quantity + "</td>";
+                        html += "<td>" + item.location + "</td>";
+                        html += "<td>" + item.condition + "</td>";
+                        html += "<td>" + item.serialNumber + "</td>";
+                        html += "<td>" + item.compatibility + "</td>";
+                        html += "<td>" + item.information + "</td>";
+                        html += "<td>" + item.comments + "</td>";
+                        html += "<td>" + item.dateTime + "</td>";
+                        html += "<td><button class=\"editButton\" onclick=\"editItem('" + item.description + "','" + item.quantity + "','" + item.location + "','" + item.condition + "','" + item.serialNumber + "','" + item.compatibility + "','" + item.information + "','" + item.comments + "')\">Edit</button></td>";
+                        html += "</tr>";
+                    });
+                    html += "</table>";
+                    inventoryContainer.innerHTML = html;
                 }
             };
             xhr.send();
         }
-
-        // Initial display of inventory data
-        displayInventory();
     </script>
 </body>
 </html>
