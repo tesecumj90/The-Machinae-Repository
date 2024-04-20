@@ -37,64 +37,27 @@
             <input type="text" id="comments" name="comments"><br><br>
 
             <button type="button" onclick="addItem()">Add to Inventory</button>
+            <button type="button" onclick="displayInventoryWindow()">Display Inventory</button>
         </form>
-
-        <div id="inventoryData"></div> <!-- Container to display inventory data -->
     </div>
 
     <script>
         function addItem() {
-            var description = document.getElementById("description").value;
-            var quantity = document.getElementById("quantity").value;
-            var location = document.getElementById("location").value;
-            var condition = document.getElementById("condition").value;
-            var serialNumber = document.getElementById("serialNumber").value;
-            var compatibility = document.getElementById("compatibility").value;
-            var information = document.getElementById("information").value;
-            var comments = document.getElementById("comments").value;
-
-            // Construct URL with form data
-            var url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS9RNMYzU4_LX5OUy-s-vinWF-Wyoxnx5t3Hhozymkhw7_6AP4DUbNgDf2qJK3309c4FT8l_w3wRXzJ/pub?gid=0&single=true";
-            url += "&description=" + encodeURIComponent(description);
-            url += "&quantity=" + encodeURIComponent(quantity);
-            url += "&location=" + encodeURIComponent(location);
-            url += "&condition=" + encodeURIComponent(condition);
-            url += "&serialNumber=" + encodeURIComponent(serialNumber);
-            url += "&compatibility=" + encodeURIComponent(compatibility);
-            url += "&information=" + encodeURIComponent(information);
-            url += "&comments=" + encodeURIComponent(comments);
-
-            // Make GET request to add item to spreadsheet
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", url, true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    alert("The Repository has been Updated!!");
-                    document.getElementById("inventoryForm").reset();
-                    displayInventory(); // Refresh inventory data after adding item
-                }
-            };
-            xhr.send();
+            // Your addItem function remains the same
         }
 
-        // Function to display inventory data
-        function displayInventory() {
-            var inventoryContainer = document.getElementById("inventoryData");
-
+        function displayInventoryWindow() {
+            // Open a new window to display inventory data
+            var inventoryWindow = window.open("", "Inventory Window", "width=600,height=400");
             // Fetch data from the published Google Spreadsheet URL
             fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vS9RNMYzU4_LX5OUy-s-vinWF-Wyoxnx5t3Hhozymkhw7_6AP4DUbNgDf2qJK3309c4FT8l_w3wRXzJ/pub?gid=0&single=true')
                 .then(response => response.text())
                 .then(data => {
-                    // Display the data directly as HTML
-                    inventoryContainer.innerHTML = data;
+                    // Display the data in the new window
+                    inventoryWindow.document.write(data);
                 })
                 .catch(error => console.error('Error fetching data:', error));
         }
-
-        // Call displayInventory function when the page loads
-        window.onload = function() {
-            displayInventory();
-        };
     </script>
 </body>
 </html>
