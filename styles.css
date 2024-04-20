@@ -1,5 +1,5 @@
 body {
-    background-image: url('black-eye-cyber-circuit-future-technology-concept-background-vector.jpg');
+    background-image: url('black-eye-cyber-circuit-future-technology-concept-background-vector.jpg'); /* Replace 'background-image.jpg' with your background image file */
     background-size: cover;
     color: white;
     font-family: Arial, sans-serif;
@@ -17,28 +17,26 @@ h1, h2 {
     text-align: center;
 }
 
-.container {
-    max-width: 800px; /* Increased max-width for better layout */
-    margin: 50px auto; /* Center the container vertically and horizontally */
+form {
+    max-width: 400px;
+    margin: 0 auto;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.8); /* Increased opacity for better readability */
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Added box shadow for depth */
 }
 
 label {
     display: block;
-    margin-bottom: 10px; /* Increased margin-bottom for better spacing */
+    margin-bottom: 5px;
 }
 
 input[type="text"],
 input[type="number"] {
-    width: calc(100% - 16px); /* Adjusted width to account for padding */
+    width: 100%;
     padding: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     border: none;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.8); /* Added background color for better visibility */
 }
 
 button {
@@ -49,29 +47,8 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s; /* Added transition for smoother hover effect */
-    margin-bottom: 10px; /* Added margin bottom for better spacing */
 }
 
 button:hover {
     background-color: #45a049;
-}
-
-/* Add styles for the Edit button */
-button.editButton {
-    background-color: #008CBA;
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-button.editButton:hover {
-    background-color: #005F6B;
 }
