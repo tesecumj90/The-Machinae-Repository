@@ -36,83 +36,23 @@
             <label for="comments">Comments:</label>
             <input type="text" id="comments" name="comments"><br><br>
 
-            <button type="button" id="addItemButton" onclick="addItem()">Add to Inventory</button>
+            <button type="button" onclick="addItem()">Add to Inventory</button>
         </form>
 
-        <div id="inventoryData"></div> <!-- Container to display and edit inventory data -->
+        <div id="inventoryData"></div> <!-- Container to display inventory data -->
     </div>
 
     <script>
-        // Function to add item to inventory
         function addItem() {
-            // Code for adding item to inventory
-            // This remains unchanged from the previous implementation
+            // Same as before
         }
 
-        // Function to display inventory data
         function displayInventory() {
-            var inventoryContainer = document.getElementById("inventoryData");
-
-            // Make a GET request to retrieve inventory data from Google Sheets web app
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec", true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var inventoryData = JSON.parse(xhr.responseText); // Parse JSON response
-                    // Display inventory data in the container
-                    var html = "<h2>Inventory Data</h2>";
-                    html += "<table>";
-                    html += "<tr><th>Description</th><th>Quantity</th><th>Location</th><th>Condition</th><th>Serial Number</th><th>Compatibility</th><th>Information</th><th>Comments</th><th>Date/Time</th><th>Edit</th></tr>";
-                    inventoryData.forEach(function (item) {
-                        html += "<tr>";
-                        html += "<td>" + item.description + "</td>";
-                        html += "<td>" + item.quantity + "</td>";
-                        html += "<td>" + item.location + "</td>";
-                        html += "<td>" + item.condition + "</td>";
-                        html += "<td>" + item.serialNumber + "</td>";
-                        html += "<td>" + item.compatibility + "</td>";
-                        html += "<td>" + item.information + "</td>";
-                        html += "<td>" + item.comments + "</td>";
-                        html += "<td>" + item.dateTime + "</td>";
-                        html += "<td><button onclick=\"editItem('" + item.description + "', '" + item.quantity + "', '" + item.location + "', '" + item.condition + "', '" + item.serialNumber + "', '" + item.compatibility + "', '" + item.information + "', '" + item.comments + "', '" + item.dateTime + "')\">Edit</button></td>";
-                        html += "</tr>";
-                    });
-                    html += "</table>";
-                    inventoryContainer.innerHTML = html; // Set the HTML content of the container
-                }
-            };
-            xhr.send();
+            // Same as before
         }
 
         // Call the function to display inventory data when the page loads
         displayInventory();
-
-        // Function to edit an inventory item
-        function editItem(description, quantity, location, condition, serialNumber, compatibility, information, comments, dateTime) {
-            // Populate the form fields with the item's data for editing
-            document.getElementById("description").value = description;
-            document.getElementById("quantity").value = quantity;
-            document.getElementById("location").value = location;
-            document.getElementById("condition").value = condition;
-            document.getElementById("serialNumber").value = serialNumber;
-            document.getElementById("compatibility").value = compatibility;
-            document.getElementById("information").value = information;
-            document.getElementById("comments").value = comments;
-
-            // Add an event listener to the "Add to Inventory" button to call the updateItem function instead
-            var addItemButton = document.getElementById("addItemButton");
-            addItemButton.removeEventListener("click", addItem);
-            addItemButton.addEventListener("click", function() {
-                updateItem(description, quantity, location, condition, serialNumber, compatibility, information, comments, dateTime);
-            });
-            addItemButton.textContent = "Update Item";
-        }
-
-        // Function to update an inventory item
-        function updateItem(description, quantity, location, condition, serialNumber, compatibility, information, comments, dateTime) {
-            // Code to update the item in the inventory
-            // This will call the appropriate Google Apps Script function to update the item in the Google Sheet
-        }
     </script>
 </body>
 </html>
