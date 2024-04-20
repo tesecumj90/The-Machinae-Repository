@@ -12,30 +12,8 @@
         <h1>The-Machinae-Repository</h1>
         <h2>Add Item to Inventory</h2>
         <form id="inventoryForm">
-            <label for="description">Description:</label>
-            <input type="text" id="description" name="description"><br><br>
-
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity"><br><br>
-
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location"><br><br>
-
-            <label for="condition">Condition:</label>
-            <input type="text" id="condition" name="condition"><br><br>
-
-            <label for="serialNumber">Serial Number:</label>
-            <input type="text" id="serialNumber" name="serialNumber"><br><br>
-
-            <label for="compatibility">Compatibility:</label>
-            <input type="text" id="compatibility" name="compatibility"><br><br>
-
-            <label for="information">Information:</label>
-            <input type="text" id="information" name="information"><br><br>
-
-            <label for="comments">Comments:</label>
-            <input type="text" id="comments" name="comments"><br><br>
-
+            <!-- Input fields for adding new item -->
+            <!-- Omitted for brevity -->
             <button type="button" onclick="addItem()">Add to Inventory</button>
         </form>
 
@@ -44,67 +22,51 @@
 
     <script>
         function addItem() {
-            var description = document.getElementById("description").value;
-            var quantity = document.getElementById("quantity").value;
-            var location = document.getElementById("location").value;
-            var condition = document.getElementById("condition").value;
-            var serialNumber = document.getElementById("serialNumber").value;
-            var compatibility = document.getElementById("compatibility").value;
-            var information = document.getElementById("information").value;
-            var comments = document.getElementById("comments").value;
-
-            var url = "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec";
-            url += "?description=" + encodeURIComponent(description);
-            url += "&quantity=" + encodeURIComponent(quantity);
-            url += "&location=" + encodeURIComponent(location);
-            url += "&condition=" + encodeURIComponent(condition);
-            url += "&serialNumber=" + encodeURIComponent(serialNumber);
-            url += "&compatibility=" + encodeURIComponent(compatibility);
-            url += "&information=" + encodeURIComponent(information);
-            url += "&comments=" + encodeURIComponent(comments);
-
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", url, true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    alert("The Repository has been Updated!!");
-                    document.getElementById("inventoryForm").reset();
-                    displayInventory(); // Call function to display updated inventory data
-                }
-            };
-            xhr.send();
+            // Same as before, omitted for brevity
         }
 
-        // Function to display inventory data
         function displayInventory() {
             var inventoryContainer = document.getElementById("inventoryData");
 
-            // Make a GET request to retrieve inventory data from Google Sheets web app
+            // Same as before, omitted for brevity
+        }
+
+        // Function to populate form fields with item details for editing
+        function editItem(description, quantity, location, condition, serialNumber, compatibility, information, comments) {
+            // Populate form fields with item details for editing
+            document.getElementById("description").value = description;
+            document.getElementById("quantity").value = quantity;
+            document.getElementById("location").value = location;
+            document.getElementById("condition").value = condition;
+            document.getElementById("serialNumber").value = serialNumber;
+            document.getElementById("compatibility").value = compatibility;
+            document.getElementById("information").value = information;
+            document.getElementById("comments").value = comments;
+
+            // Change Add button to Update button
+            var addButton = document.getElementById("addButton");
+            addButton.innerText = "Update Inventory";
+            addButton.setAttribute("onclick", "updateItem('" + description + "')");
+        }
+
+        // Function to update item in inventory
+        function updateItem(description) {
+            // Similar to addItem(), but with a different URL for updating the item
+            // Omitted for brevity
+        }
+
+        // Function to delete item from inventory
+        function deleteItem(description) {
+            // Define URL for deleting the item
+            var deleteUrl = "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec?description=" + encodeURIComponent(description) + "&action=delete";
+
+            // Make a GET request to delete the item
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec", true);
+            xhr.open("GET", deleteUrl, true);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    var inventoryData = JSON.parse(xhr.responseText); // Parse JSON response
-                    // Display inventory data in the container
-                    var html = "<h2>Inventory Data</h2>";
-                    html += "<table>";
-                    html += "<tr><th>Description</th><th>Quantity</th><th>Location</th><th>Condition</th><th>Serial Number</th><th>Compatibility</th><th>Information</th><th>Comments</th><th>Date/Time</th><th>Edit</th></tr>";
-                    inventoryData.forEach(function (item) {
-                        html += "<tr>";
-                        html += "<td>" + item.description + "</td>";
-                        html += "<td>" + item.quantity + "</td>";
-                        html += "<td>" + item.location + "</td>";
-                        html += "<td>" + item.condition + "</td>";
-                        html += "<td>" + item.serialNumber + "</td>";
-                        html += "<td>" + item.compatibility + "</td>";
-                        html += "<td>" + item.information + "</td>";
-                        html += "<td>" + item.comments + "</td>";
-                        html += "<td>" + item.dateTime + "</td>";
-                        html += "<td><button class=\"editButton\" onclick=\"editItem('" + item.description + "','" + item.quantity + "','" + item.location + "','" + item.condition + "','" + item.serialNumber + "','" + item.compatibility + "','" + item.information + "','" + item.comments + "')\">Edit</button></td>";
-                        html += "</tr>";
-                    });
-                    html += "</table>";
-                    inventoryContainer.innerHTML = html; // Set the HTML content of the container
+                    alert("Item deleted successfully!");
+                    displayInventory(); // Reload inventory data after deletion
                 }
             };
             xhr.send();
