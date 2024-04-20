@@ -53,7 +53,7 @@
             var information = document.getElementById("information").value;
             var comments = document.getElementById("comments").value;
 
-            var url = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec"; // Replace with your Google Apps Script URL
+            var url = "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec";
             url += "?description=" + encodeURIComponent(description);
             url += "&quantity=" + encodeURIComponent(quantity);
             url += "&location=" + encodeURIComponent(location);
@@ -81,7 +81,7 @@
 
             // Make a GET request to retrieve inventory data from Google Sheets web app
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", true); // Replace with your Google Apps Script URL
+            xhr.open("GET", "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec", true);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var inventoryData = JSON.parse(xhr.responseText); // Parse JSON response
@@ -91,4 +91,24 @@
                     html += "<tr><th>Description</th><th>Quantity</th><th>Location</th><th>Condition</th><th>Serial Number</th><th>Compatibility</th><th>Information</th><th>Comments</th><th>Date/Time</th><th>Edit</th></tr>";
                     inventoryData.forEach(function (item) {
                         html += "<tr>";
-                        html +=
+                        html += "<td>" + item.description + "</td>";
+                        html += "<td>" + item.quantity + "</td>";
+                        html += "<td>" + item.location + "</td>";
+                        html += "<td>" + item.condition + "</td>";
+                        html += "<td>" + item.serialNumber + "</td>";
+                        html += "<td>" + item.compatibility + "</td>";
+                        html += "<td>" + item.information + "</td>";
+                        html += "<td>" + item.comments + "</td>";
+                        html += "<td>" + item.dateTime + "</td>";
+                        html += "<td><button class=\"editButton\" onclick=\"editItem('" + item.description + "','" + item.quantity + "','" + item.location + "','" + item.condition + "','" + item.serialNumber + "','" + item.compatibility + "','" + item.information + "','" + item.comments + "')\">Edit</button></td>";
+                        html += "</tr>";
+                    });
+                    html += "</table>";
+                    inventoryContainer.innerHTML = html; // Set the HTML content of the container
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
