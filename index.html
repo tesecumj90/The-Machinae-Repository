@@ -30,8 +30,8 @@
             <label for="compatibility">Compatibility:</label>
             <input type="text" id="compatibility" name="compatibility"><br><br>
 
-            <label for="information">Information:</label>
-            <input type="text" id="information" name="information"><br><br>
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category"><br><br>
 
             <label for="comments">Comments:</label>
             <input type="text" id="comments" name="comments"><br><br>
@@ -40,6 +40,12 @@
         </form>
 
         <div id="inventoryData"></div> <!-- Container to display inventory data -->
+
+        <!-- View Inventory Button -->
+        <button onclick="viewInventory()">View Inventory</button>
+        <div id="inventoryView" style="display: none;">
+            <iframe id="inventoryFrame" src="" width="100%" height="600px" frameborder="0"></iframe>
+        </div>
     </div>
 
     <script>
@@ -50,7 +56,7 @@
             var condition = document.getElementById("condition").value;
             var serialNumber = document.getElementById("serialNumber").value;
             var compatibility = document.getElementById("compatibility").value;
-            var information = document.getElementById("information").value;
+            var category = document.getElementById("category").value;
             var comments = document.getElementById("comments").value;
 
             var url = "https://script.google.com/macros/s/AKfycby2HkSjjDttEfIuqhjaoyknQ-0sx5l5o8QyqL7RFFyqxim99GXLNlEjFnRtL4nd9crx/exec";
@@ -60,7 +66,7 @@
             url += "&condition=" + encodeURIComponent(condition);
             url += "&serialNumber=" + encodeURIComponent(serialNumber);
             url += "&compatibility=" + encodeURIComponent(compatibility);
-            url += "&information=" + encodeURIComponent(information);
+            url += "&category=" + encodeURIComponent(category);
             url += "&comments=" + encodeURIComponent(comments);
 
             var xhr = new XMLHttpRequest();
@@ -75,7 +81,12 @@
             xhr.send();
         }
 
-        // Function to display inventory data
+        function viewInventory() {
+            var url = "https://script.google.com/macros/s/AKfycbwQ4_gvvoiggl1VG5nK9J1ehV6DiUG15pGd4ogPlhlNVXWECwFPr6e0M9qF3IvONqzF/exec";
+            document.getElementById("inventoryFrame").src = url;
+            document.getElementById("inventoryView").style.display = "block";
+        }
+
         function displayInventory() {
             var inventoryContainer = document.getElementById("inventoryData");
 
@@ -88,7 +99,7 @@
                     // Display inventory data in the container
                     var html = "<h2>Inventory Data</h2>";
                     html += "<table>";
-                    html += "<tr><th>Description</th><th>Quantity</th><th>Location</th><th>Condition</th><th>Serial Number</th><th>Compatibility</th><th>Information</th><th>Comments</th><th>Date/Time</th><th>Edit</th></tr>";
+                    html += "<tr><th>Description</th><th>Quantity</th><th>Location</th><th>Condition</th><th>Serial Number</th><th>Compatibility</th><th>Category</th><th>Comments</th><th>Date/Time</th><th>Edit</th></tr>";
                     inventoryData.forEach(function (item) {
                         html += "<tr>";
                         html += "<td>" + item.description + "</td>";
@@ -97,10 +108,10 @@
                         html += "<td>" + item.condition + "</td>";
                         html += "<td>" + item.serialNumber + "</td>";
                         html += "<td>" + item.compatibility + "</td>";
-                        html += "<td>" + item.information + "</td>";
+                        html += "<td>" + item.category + "</td>";
                         html += "<td>" + item.comments + "</td>";
                         html += "<td>" + item.dateTime + "</td>";
-                        html += "<td><button class=\"editButton\" onclick=\"editItem('" + item.description + "','" + item.quantity + "','" + item.location + "','" + item.condition + "','" + item.serialNumber + "','" + item.compatibility + "','" + item.information + "','" + item.comments + "')\">Edit</button></td>";
+                        html += "<td><button class=\"editButton\" onclick=\"editItem('" + item.description + "','" + item.quantity + "','" + item.location + "','" + item.condition + "','" + item.serialNumber + "','" + item.compatibility + "','" + item.category + "','" + item.comments + "')\">Edit</button></td>";
                         html += "</tr>";
                     });
                     html += "</table>";
