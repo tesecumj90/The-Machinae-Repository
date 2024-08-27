@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,10 +38,11 @@
   <label for="serialNumber">Serial Number:</label><br>
   <input type="text" id="serialNumber" name="serialNumber" required><br><br>
   
-  <!-- Removed compatibility field -->
+  <label for="compatibility">Compatibility:</label><br>
+  <input type="text" id="compatibility" name="compatibility" required><br><br>
   
-  <label for="specifics">Specifics:</label><br>
-  <input type="text" id="specifics" name="specifics" required><br><br>
+  <label for="category">Category:</label><br>
+  <input type="text" id="category" name="category" required><br><br>
   
   <label for="comments">Comments:</label><br>
   <textarea id="comments" name="comments"></textarea><br><br>
@@ -84,6 +86,7 @@ document.getElementById("inventoryForm").addEventListener("submit", function(eve
 
 document.getElementById("toggleSheet").addEventListener("click", function() {
   var sheetContainer = document.getElementById("sheetContainer");
+  var googleSheet = document.getElementById("googleSheet");
   if (sheetContainer.style.display === "none") {
     sheetContainer.style.display = "block";
   } else {
@@ -97,9 +100,11 @@ function clearForm() {
   document.getElementById("location").value = "";
   document.getElementById("condition").value = "";
   document.getElementById("serialNumber").value = "";
-  document.getElementById("specifics").value = ""; // Ensure specifics is cleared
-  document.getElementById("comments").value = ""; // Ensure comments is cleared
+  document.getElementById("compatibility").value = "";
+  document.getElementById("category").value = "";
+  document.getElementById("comments").value = "";
 }
 </script>
 </body>
 </html>
+
