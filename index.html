@@ -60,7 +60,7 @@ document.getElementById("inventoryForm").addEventListener("submit", function(eve
   event.preventDefault();
   
   var formData = new FormData(this);
-  var url = "https://script.google.com/macros/s/AKfycbxXN3cBhqwERO-UC1coN0PxSEc-sy0GpR6FxRl_crzwNaZ7GkCvGNKh8RVRiR-j-_AE/exec";
+  var url = "https://script.google.com/macros/s/AKfycbxz992_7ffDcEGLmh4s8wd8Cba7fNPRyoRDNT-JwexzH7af_eouzVDSk8Q5gvEAC1LW/exec";
   
   fetch(url + "?" + new URLSearchParams(formData))
     .then(response => {
@@ -95,7 +95,7 @@ function clearForm() {
   document.getElementById("location").value = "";
   document.getElementById("condition").value = "";
   document.getElementById("serialNumber").value = "";
-  document.getElementById("specifics").value = "";
+  document.getElementById("specifics").value = ""; // Changed to specifics
   document.getElementById("comments").value = "";
 }
 </script>
