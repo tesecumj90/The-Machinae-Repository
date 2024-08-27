@@ -84,7 +84,6 @@ document.getElementById("inventoryForm").addEventListener("submit", function(eve
 
 document.getElementById("toggleSheet").addEventListener("click", function() {
   var sheetContainer = document.getElementById("sheetContainer");
-  var googleSheet = document.getElementById("googleSheet");
   if (sheetContainer.style.display === "none") {
     sheetContainer.style.display = "block";
   } else {
@@ -98,8 +97,8 @@ function clearForm() {
   document.getElementById("location").value = "";
   document.getElementById("condition").value = "";
   document.getElementById("serialNumber").value = "";
-  document.getElementById("specifics").value = ""; // Changed to specifics
-  document.getElementById("comments").value = "";
+  document.getElementById("specifics").value = ""; // Ensure specifics is cleared
+  document.getElementById("comments").value = ""; // Ensure comments is cleared
 }
 </script>
 </body>
