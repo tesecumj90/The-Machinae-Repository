@@ -52,7 +52,7 @@
 
 <!-- Google Sheet embedded using iframe -->
 <div id="sheetContainer">
-  <iframe id="googleSheet" src="https://docs.google.com/spreadsheets/d/1KXLm476e1FLXvsGJa-AVjg__WUvzE6NqVojFyfmRY1g/edit?usp=sharing" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+  <iframe id="googleSheet" src="https://docs.google.com/spreadsheets/d/1f7DAd79ltTjT-aRLQsjzMy5w6oH3lgwMLPGx3iClXOg/edit?usp=sharing" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
 </div>
 
 <script>
@@ -60,7 +60,7 @@ document.getElementById("inventoryForm").addEventListener("submit", function(eve
   event.preventDefault();
   
   var formData = new FormData(this);
-  var url = "https://script.google.com/macros/s/AKfycbxz992_7ffDcEGLmh4s8wd8Cba7fNPRyoRDNT-JwexzH7af_eouzVDSk8Q5gvEAC1LW/exec";
+  var url = "https://script.google.com/macros/s/AKfycbw32l_kOYoBKHH2wlV5fyEcgVcgaV6BaH3lMCPWdCe52VRVthLgRihjKp5MX3nlHojJ/exec";
   
   fetch(url + "?" + new URLSearchParams(formData))
     .then(response => {
@@ -82,6 +82,7 @@ document.getElementById("inventoryForm").addEventListener("submit", function(eve
 
 document.getElementById("toggleSheet").addEventListener("click", function() {
   var sheetContainer = document.getElementById("sheetContainer");
+  var googleSheet = document.getElementById("googleSheet");
   if (sheetContainer.style.display === "none") {
     sheetContainer.style.display = "block";
   } else {
@@ -95,7 +96,7 @@ function clearForm() {
   document.getElementById("location").value = "";
   document.getElementById("condition").value = "";
   document.getElementById("serialNumber").value = "";
-  document.getElementById("specifics").value = ""; // Changed to specifics
+  document.getElementById("specifics").value = ""; 
   document.getElementById("comments").value = "";
 }
 </script>
